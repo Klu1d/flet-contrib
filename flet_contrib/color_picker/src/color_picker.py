@@ -10,10 +10,16 @@ CIRCLE_SIZE = 20
 
 
 class ColorPicker(ft.Column):
-    def __init__(self, color="#000000", width=COLOR_MATRIX_WIDTH):
+    def __init__(
+            self, 
+            color="#000000", 
+            width=COLOR_MATRIX_WIDTH,
+            visible_fields=False
+        ):
         super().__init__()
         self.tight = True
         self.width = width
+        self.visible_fields = visible_fields
         self.__color = color
         self.hue_slider = HueSlider(
             on_change_hue=self.update_color_picker_on_hue_change,
@@ -118,6 +124,7 @@ class ColorPicker(ft.Column):
                     ],
                 ),
                 ft.Row(
+                    visible=self.visible_fields,
                     alignment=ft.MainAxisAlignment.SPACE_AROUND,
                     controls=[
                         self.hex,
